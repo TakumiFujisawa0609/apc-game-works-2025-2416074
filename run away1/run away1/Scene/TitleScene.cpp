@@ -15,7 +15,7 @@ TitleScene::~TitleScene()
 
 void TitleScene::Load(void)
 {
-	image_ = LoadGraph("Data/Title(new).png");
+	image_ = LoadGraph("Data/Image/Scenes/Title(new).png");
 	kizu_ = LoadGraph("Data/Kizuato.png");
 
 	waitSound_ = false;

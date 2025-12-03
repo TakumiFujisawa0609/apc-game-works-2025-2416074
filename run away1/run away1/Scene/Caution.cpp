@@ -12,7 +12,7 @@ Caution::~Caution()
 
 void Caution::Load(void)
 {
-	image_ = LoadGraph("Data/Caution.png");
+	image_ = LoadGraph("Data/Image/UI/Caution.png");
 	counter_ = 0.0f;
 }
 

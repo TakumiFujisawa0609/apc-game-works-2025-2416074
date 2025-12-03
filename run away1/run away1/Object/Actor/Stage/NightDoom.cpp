@@ -14,7 +14,7 @@ void NightDoom::Load(void)
 
 void NightDoom::Init(void)
 {
-	modelId_ = MV1LoadModel("Data/Skydome.mv1");
+	modelId_ = MV1LoadModel("Data/Model/Stage/Skydome.mv1");
 	pos_ = { 0.0f,0.0f,0.0f };
 	scl_ = { 2.0f,2.0f,2.0f };
 	rot_ = { 0.0f,0.0f,0.0f };

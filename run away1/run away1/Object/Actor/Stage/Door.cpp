@@ -14,7 +14,7 @@ Door::~Door()
 void Door::Init()
 {
 	//èâä˙âª
-	modelId_ = MV1LoadModel("Data/NewDoor.mv1");
+	modelId_ = MV1LoadModel("Data/Model/Stage/NewDoor.mv1");
 	pos_ = VGet(27.95f, 39.80f, -20.08f);
 	rot_ = VGet(0.0f, 0.0f, 0.0f);
 	scale_ = VGet(0.03f, 0.03f, 0.03f);

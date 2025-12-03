@@ -104,7 +104,7 @@ bool Enemy::GetGameOver()
 
 void Enemy::InitLoad(void)
 {
-	modelId_ = MV1LoadModel("Data/Enemy.mv1");
+	modelId_ = MV1LoadModel("Data/Model/Enemy/Enemy.mv1");
 }
 
 void Enemy::InitTransform(void)
@@ -135,9 +135,9 @@ void Enemy::InitAnimation(void)
 	animationController_ = new AnimationController(modelId_);
 
 	// アニメーションの追加
-	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE), 25.0f, "Data/EnemyIdle.mv1");
-	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), 25.0f, "Data/EnemyrRun.mv1");
-	animationController_->Add(static_cast<int>(ANIM_TYPE::WALK), 25.0f, "Data/Walk.mv1");
+	animationController_->Add(static_cast<int>(ANIM_TYPE::IDLE), 25.0f, "Data/Model/Enemy/EnemyIdle.mv1");
+	animationController_->Add(static_cast<int>(ANIM_TYPE::RUN), 25.0f, "Data/Model/Enemy/EnemyrRun.mv1");
+	animationController_->Add(static_cast<int>(ANIM_TYPE::WALK), 25.0f, "Data/Model/Enemy/Walk.mv1");
 
 	//初期アニメーションは待機状態
 

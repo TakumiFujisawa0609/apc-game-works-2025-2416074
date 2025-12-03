@@ -57,9 +57,9 @@ void GameClearScene::Load(void)
 
 	gameOver_ = false;
 
-	exit_ = MV1LoadModel("Data/Exit.mv1");
-	forest_=MV1LoadModel("Data/Morimori.mv1");
-	forest2_ = MV1LoadModel("Data/Morimori.mv1");
+	exit_ = MV1LoadModel("Data/Model/Stage/Exit.mv1");
+	forest_=MV1LoadModel("Data/Model/Stage/Morimori.mv1");
+	forest2_ = MV1LoadModel("Data/Model/Stage/Morimori.mv1");
 
 	pos_1 = { 0.0f,0.0f,0.0f };
 	pos_2 = { 119.50f,-53.50f,-12.0f };
@@ -92,26 +92,6 @@ void GameClearScene::Update(void)
 {
 	auto& ins = InputManager::GetInstance();
 
-
-	//if (GetJoypadNum() == 0)
-	//{
-	//	if (ins.IsTrgUp(KEY_INPUT_SPACE))
-	//	{
-	//		SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::TITLE);
-	//	}
-	//}
-	//else
-	//{
-	//	// 接続されているゲームパッド１の情報を取得
-	//	InputManager::JOYPAD_IN_STATE padState =
-	//		ins.GetJPadInputState(InputManager::JOYPAD_NO::PAD1);
-	//	// Bボタンが押されたらゲームシーンへ
-	//	if (ins.IsPadBtnNew(InputManager::JOYPAD_NO::PAD1, InputManager::JOYPAD_BTN::LEFT))
-	//	{
-	//		SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::TITLE);
-	//	}
-	//}
-
 	// 全てのアクターを回す
 	for (auto actor : allActor_)
 	{
@@ -119,22 +99,7 @@ void GameClearScene::Update(void)
 		actor->Update();
 
 		// 当たり判定（プレイヤーの壁/ドア/アイテムなど）
-		// ... (FieldCollision, WallCollision, DoorCollision, ItemCollision... はそのまま) ...
 		WallCollision(actor);
-
-
-		//// 敵のスタック検知
-		//// Player以外のActorBase*を引数に取っているので、呼び出す前にGetTypeでチェックが必要
-		//if (actor->GetType() == ActorBase::ACTOR_TYPE::ENEMY)
-		//{
-		//	EnemyStack(actor);
-		//}
-
-		//// 敵の当たり判定
-		//if (actor->GetType() == ActorBase::ACTOR_TYPE::ENEMY)
-		//{
-		//	EnemyCollision(actor);
-		//}
 	}
 
 	//カメラ更新
@@ -157,16 +122,6 @@ void GameClearScene::Update(void)
 	{
 		gameOver_ = false;
 	}
-	
-	//デバッグ
-	//if (ins.IsNew(KEY_INPUT_W)) { pos_3.z += 0.5; }
-	//if (ins.IsNew(KEY_INPUT_S)) { pos_3.z -= 0.5; }
-	//if (ins.IsNew(KEY_INPUT_A)) { pos_3.x -= 0.5; }
-	//if (ins.IsNew(KEY_INPUT_D)) { pos_3.x += 0.5; }
-
-	//if (ins.IsNew(KEY_INPUT_E)) pos_3.y += 0.5f;
-	//if (ins.IsNew(KEY_INPUT_Q)) pos_3.y -= 0.5f;
-
 	MV1SetPosition(exit_, pos_1);
 	MV1SetPosition(forest_, pos_2);
 	MV1SetPosition(forest2_, pos_3);
@@ -204,19 +159,6 @@ void GameClearScene::Draw(void)
 		// 更新処理
 		actor->Draw();
 	}
-
-	//カメラ描画
-	//camera_->DrawDebug();
-
-	
-
-	/*DrawFormatString(0, 0, 0xFFFFFF, "pos:(%.2f,%.2f,%.2f)", pos_1.x, pos_1.y, pos_1.z);
-
-	DrawFormatString(0, 40, 0xFFFFFF, "pos:(%.2f,%.2f,%.2f)", pos_2.x, pos_2.y, pos_2.z);
-
-	DrawFormatString(0, 80, 0xFFFFFF, "pos:(%.2f,%.2f,%.2f)", pos_3.x, pos_3.y, pos_3.z);
-
-	DrawFormatString(0, 100, 0xFFFFFF, "gameOver=%d",gameOver_);*/
 	
 }
 
@@ -262,18 +204,6 @@ Player* GameClearScene::GetPlayer()
 	}
 	return nullptr;
 }
-//
-//Enemy* GameClearScene::GetEnemy()
-//{
-//	for (auto actor : allActor_)
-//	{
-//		if (actor->GetType() == ActorBase::ACTOR_TYPE::ENEMY)
-//		{
-//			return static_cast<Enemy*>(actor);
-//		}
-//	}
-//	return nullptr;
-//}
 
 void GameClearScene::Cleared()
 {

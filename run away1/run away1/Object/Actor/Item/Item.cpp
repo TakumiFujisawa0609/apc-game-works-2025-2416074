@@ -11,10 +11,10 @@ Item::~Item()
 
 void Item::Load()
 {
-	modelId_ = MV1LoadModel("Data/Key.mv1");
-	modelId2_ = MV1LoadModel("Data/RedKey.mv1");
-	modelId3_ = MV1LoadModel("Data/BlueKey.mv1");
-	modelId4_ = MV1LoadModel("Data/GreenKey.mv1");
+	modelId_ = MV1LoadModel("Data/Model/Item/Key.mv1");
+	modelId2_ = MV1LoadModel("Data/Model/Item/RedKey.mv1");
+	modelId3_ = MV1LoadModel("Data/Model/Item/BlueKey.mv1");
+	modelId4_ = MV1LoadModel("Data/Model/Item/GreenKey.mv1");
 	pos_ = KEY1_INIT_POS;
 	pos2_ = KEY2_INIT_POS;
 	pos3_ = KEY3_INIT_POS;
@@ -68,10 +68,10 @@ void Item::Load()
 	MV1SetScale(modelId4_,KEY_SCALE);
 
 
-	keyIcon1_ = LoadGraph("Data/Keyicon.png");
-	keyIcon2_ = LoadGraph("Data/Keyicon2.png");
-	keyIcon3_ = LoadGraph("Data/Keyicon3.png");
-	keyIcon4_ = LoadGraph("Data/GreenKey.png");
+	keyIcon1_ = LoadGraph("Data/Image/Item/Keyicon.png");
+	keyIcon2_ = LoadGraph("Data/Image/Item/Keyicon2.png");
+	keyIcon3_ = LoadGraph("Data/Image/Item/Keyicon3.png");
+	keyIcon4_ = LoadGraph("Data/Image/Item/GreenKey.png");
 
 	allGet_ = false;
 

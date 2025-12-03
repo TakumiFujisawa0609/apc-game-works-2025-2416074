@@ -11,7 +11,7 @@ Stage::~Stage(void)
 
 void Stage::Init(void)
 {
-    modelId = MV1LoadModel("Data/FinaleFile.mv1");
+    modelId = MV1LoadModel("Data/Model/Stage/FinaleFile.mv1");
 
     pos_ = { 0.0f,0.0f,0.0f };
     scale_ = { 0.01f,0.01f,0.01f };

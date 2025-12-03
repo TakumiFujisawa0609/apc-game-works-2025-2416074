@@ -96,6 +96,7 @@ private:
 	float searchRange_ = 30.0f; 
 
 
+
 	//アニメーション制御
 	AnimationController* animationController_;
 	//ゲームシーン

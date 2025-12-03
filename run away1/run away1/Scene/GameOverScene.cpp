@@ -14,7 +14,7 @@ GameOverScene::~GameOverScene()
 
 void GameOverScene::Load(void)
 {
-	image_ = LoadGraph("Data/Black.png");
+	image_ = LoadGraph("Data/Image/UI/Black.png");
 
 	text_ = strlen("S”x’â~‚ğŠm”F...");
 

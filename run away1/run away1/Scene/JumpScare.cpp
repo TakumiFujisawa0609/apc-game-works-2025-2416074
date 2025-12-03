@@ -12,8 +12,8 @@ JumpScare::~JumpScare()
 
 void JumpScare::Load(void)
 {
-    image_ = LoadGraph("Data/GameOver.ong.png");
-    black_ = LoadGraph("Data/Black.png");
+    image_ = LoadGraph("Data/Image/Scenes/GameOver.ong.png");
+    black_ = LoadGraph("Data/Image/Scenes/Black.png");
     count_ = 0;
     shakeDuration_ = 0;
 	shakeMagnitude_ = 0;
@@ -80,7 +80,7 @@ void JumpScare::Draw(void)
     // DrawGraph(X座標 + offsetX, Y座標 + offsetY, グラフィックハンドル, 透過フラグ)
     DrawGraph(0.0, 0.0, black_, true);
 
-    DrawGraph(0 + offsetX, 0 + offsetY, LoadGraph("Data/GameOver.ong.png"), FALSE);
+    DrawGraph(0 + offsetX, 0 + offsetY, LoadGraph("Data/Image/Scenes/GameOver.ong.png"), FALSE);
 
    // DrawFormatString(0, 0, 0xFFFFFF, "count_%d",count_);
 

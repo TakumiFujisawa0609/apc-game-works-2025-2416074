@@ -12,7 +12,7 @@ final::~final()
 
 void final::Load(void)
 {
-	image_ = LoadGraph("Data/escaped.png");
+	image_ = LoadGraph("Data/Image/Scenes/escaped.png");
 }
 
 void final::Init(void)

@@ -1,7 +1,10 @@
 #include "LoadScene.h"
 #include "../Manager/SceneManager.h"
 #include"../Scene/GameScene.h"
+#include"../Scene/GameClearScene.h"
 #include<cmath>
+#include<thread>
+#include<atomic>
 LoadScene::LoadScene()
 {
 }
@@ -16,10 +19,19 @@ void LoadScene::Load(void)
     loadingAngle_ = 0;
     timer_ = 0;
     Init();
-    cleared_ = false;
-    //gameScn_ = new GameScene();
+    cleared_ = false;   
+    loadComplete = false; 
 
-    image_ = LoadGraph("Data/LoadingNow.png");
+    image_ = LoadGraph("Data/Image/UI/LoadingNow.png");
+
+    // MV1モデルロードを別スレッドで実行
+    loadThread_ = std::thread([this]() {
+        this->gameScn_ = new GameScene();        // 非同期スレッド内でインスタンス生成
+        this->gameClearScn_ = new GameClearScene(); // 非同期スレッド内でインスタンス生成
+        // ロードが完了したらフラグを立てる
+        this->isLoadCompleted_ = true;
+        });
+    loadThread_.detach(); // スレッドを切り離し、メイン処理とは独立させる
 }
 
 void LoadScene::Init(void)
@@ -29,21 +41,19 @@ void LoadScene::Init(void)
 
 void LoadScene::Update(void)
 {
-    // 角度更新（くるくる回転）
+    // 角度更新
     loadingAngle_ += 10;
     if (loadingAngle_ >= 360) loadingAngle_ -= 360;
 
-    //// 経過時間をカウント（フレームレート60想定 → 1フレーム約16ms）
-    //timer_ += 16;
-
-    // 経過時間をカウント（デルタタイムを使用）
+    // デルタタイムで経過時間を加算
     float deltaTimeMs = SceneManager::GetInstance().GetDeltaTime() * 1000.0f;
-    timer_ += deltaTimeMs;
+    elapsedTime_ += deltaTimeMs;
 
-    // 約3秒経過でゲームシーンに遷移
-    if (timer_ >= 3000.0f)
+  
+    //違和感がないようにロード完了しても一定時間ロード画面を流す
+    if (isLoadCompleted_ && (elapsedTime_ >= MIN_LOAD_TIME_MS))
     {
-        // SceneManagerから直前のゲーム結果を取得
+        // ... シーン遷移処理 ...
         if (SceneManager::GetInstance().GetGameClearState() == true)
         {
             SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::CLEAR);
@@ -53,6 +63,7 @@ void LoadScene::Update(void)
             SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::GAME);
         }
     }
+
 }
 
 void LoadScene::Draw(void)
@@ -88,4 +99,9 @@ void LoadScene::Draw(void)
 
 void LoadScene::Release(void)
 {
+    if (gameScn_ != nullptr)
+    {
+        delete gameScn_;
+        gameScn_ = nullptr;
+    }
 }
