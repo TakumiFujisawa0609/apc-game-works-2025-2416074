@@ -43,7 +43,7 @@ void GameOverScene::Update(void)
 	//最初の一度だけ再生
 	auto& sm = SoundManager::GetInstance();
 
-	sm.Play(SoundManager::SRC::HERATBEAT, Sound::TIMES::LOOP);
+	sm.Play(SoundManager::SRC::HERATBEAT, Sound::TIMES::ONCE);
 
 	counter_++;
 
@@ -76,6 +76,7 @@ void GameOverScene::Update(void)
 		if (ins.IsPadBtnNew(InputManager::JOYPAD_NO::PAD1, InputManager::JOYPAD_BTN::LEFT))
 		{
 			SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::TITLE);
+			sm.AllStop();
 		}
 	}
 
@@ -95,16 +96,14 @@ void GameOverScene::Draw(void)
 
 	DrawGraph(0.0, 0.0, image_, true);
 
-	// ----------------------------------------------------
-	// 1. ヌルヌル出てくる恐怖メッセージの描画
-	// ----------------------------------------------------
+	
 	int current_width = (message_max_width_ * text_anim_timer_) / 180; // アニメーション進行度に応じて幅を計算
 	if (current_width > message_max_width_) {
 		current_width = message_max_width_; // 念のため最大幅でクランプ
 	}
 
 	RECT draw_area;
-	GetDrawArea(&draw_area); // 引数は一つ（RECT構造体へのポインタ）
+	GetDrawArea(&draw_area); // 引数は一つ
 
 	int text_x = 0; // 画面左寄りから開始
 	int text_y = 0;
@@ -118,9 +117,7 @@ void GameOverScene::Draw(void)
 	// 描画領域を元に戻す
 	SetDrawArea(draw_area.left, draw_area.top, draw_area.right, draw_area.bottom);
 
-	// ----------------------------------------------------
-	// 2. 通常の点滅メッセージの描画
-	// ----------------------------------------------------
+	
 	if (isText_&&!overText_)
 	{
 		static int blinkTimer = 0;

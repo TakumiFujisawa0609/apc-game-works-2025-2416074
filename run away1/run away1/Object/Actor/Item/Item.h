@@ -20,7 +20,7 @@ public:
 
 	// ÉâÉCÉgÇÃê›íË
 	const COLOR_F LIGHT_COLOR = { 1.0f, 1.0f, 1.0f };
-	const float LIGHT_RANGE = 5.0f;
+	const float LIGHT_RANGE = 2.5f;
 	const float LIGHT_ATTEN0 = 0.0f;
 	const float LIGHT_ATTEN1 = 0.5f;
 	const float LIGHT_ATTEN2 = 0.0f;

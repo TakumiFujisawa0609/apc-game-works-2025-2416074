@@ -23,7 +23,10 @@ public:
 		CARSOL,
 		TITLE,
 		GOGAME,
-		BLACEOUT
+		BLACEOUT,
+		CLEARD,
+		DONE,
+		START
 	};
 
 	// 明示的にインステンスを生成する

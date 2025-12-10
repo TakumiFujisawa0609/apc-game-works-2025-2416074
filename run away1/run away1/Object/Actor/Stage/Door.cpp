@@ -3,6 +3,7 @@
 #include"../../../Utility/AsoUtility.h"
 #include"../../../Manager/InputManager.h"
 #include"../../../Application.h"
+#include"../../../Manager/SoundManager.h"
 
 Door::Door()
 {
@@ -31,17 +32,15 @@ void Door::Update(const VECTOR& playerPos)
 {
 	auto& ins = InputManager::GetInstance();
 
-	// 判定距離の二乗を設定 (例: 5.0f の二乗で 25.0f)
-	const float OPEN_DISTANCE_SQ = 25.0f;
+	// 判定距離の二乗を設定
+	const float OPEN_DISTANCE_SQ = 144.0f;
+	
+	VECTOR diff = VSub(pos_, playerPos);
 
-	// 1. ドアとプレイヤー間の差分ベクトルを計算
-	VECTOR diff = VSub(pos_, playerPos); // これを使います！
 
-	// 2. 差分ベクトルの長さの二乗を計算 (距離の二乗)
-	// VDot(diff, diff) は |diff|^2 と同じ
-	float distanceSq = VDot(diff, diff); // VLenSqk の代わりに VDot を使う！
+	float distanceSq = VDot(diff, diff);
 
-	// 3. プレイヤーがドアの近くにいるか
+	//プレイヤーがドアの近くにいるか
 	isPlayerNear = (distanceSq <= OPEN_DISTANCE_SQ);
 
 	hasAllItems = (item_ != nullptr && item_->AllGet());
@@ -87,6 +86,14 @@ void Door::Update(const VECTOR& playerPos)
 
 	DownDoor(); // DownDoor() の中で isDown_ とアイテムチェックに基づいてドアが動く
 
+	if (isPlayerNear && !hasAllItems)
+	{
+		SoundManager::GetInstance().Play(SoundManager::SRC::CLOSED, Sound::TIMES::ONCE);
+	}
+	else
+	{
+		SoundManager::GetInstance().Stop(SoundManager::SRC::CLOSED);
+	}
 
 }
 
@@ -104,7 +111,7 @@ void Door::Draw()
 	if (isPlayerNear && !hasAllItems)
 	{
         // 画面中央にテキストを表示
-		DrawString(Application::SCREEN_SIZE_X / 2-25, Application::SCREEN_SIZE_Y / 2, "まだ帰さない...", GetColor(255, 0, 0)); // 警告として赤色にしてみました
+		DrawString(Application::SCREEN_SIZE_X / 2-25, Application::SCREEN_SIZE_Y / 2, "まだ帰さない...", GetColor(255, 0, 0)); 
 	}
 }
 

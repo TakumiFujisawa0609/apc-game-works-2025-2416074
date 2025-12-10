@@ -1,15 +1,8 @@
-﻿  Item.cpp
-  Caution.cpp
-  GameOverScene.cpp
-C:\Users\2416074\Desktop\run awayFIX版\run away1\run away1\Scene\GameOverScene.cpp(19,16): warning C4267: '=': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
-C:\Users\2416074\Desktop\run awayFIX版\run away1\run away1\Scene\GameOverScene.cpp(96,17): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\2416074\Desktop\run awayFIX版\run away1\run away1\Scene\GameOverScene.cpp(96,12): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-  JumpScare.cpp
-C:\Users\2416074\Desktop\run awayFIX版\run away1\run away1\Scene\JumpScare.cpp(81,20): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\2416074\Desktop\run awayFIX版\run away1\run away1\Scene\JumpScare.cpp(81,15): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-  LoadScene.cpp
-C:\Users\2416074\Desktop\run awayFIX版\run away1\run away1\Scene\LoadScene.cpp(84,19): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
-  TitleScene.cpp
-  final.cpp
-  コードを生成中...
-  run away1.vcxproj -> C:\Users\2416074\Desktop\run awayFIX版\run away1\x64\Debug\run away1.exe
+﻿  Enemy.cpp
+C:\Users\2416074\Desktop\run away最新版\run away1\Object\Actor\Enemey\Enemy.cpp(192,16): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
+C:\Users\2416074\Desktop\run away最新版\run away1\Object\Actor\Enemey\Enemy.cpp(195,28): warning C4305: '-=': 'double' から 'float' へ切り詰めます。
+C:\Users\2416074\Desktop\run away最新版\run away1\Object\Actor\Enemey\Enemy.cpp(196,29): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
+C:\Users\2416074\Desktop\run away最新版\run away1\Object\Actor\Enemey\Enemy.cpp(234,16): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
+C:\Users\2416074\Desktop\run away最新版\run away1\Object\Actor\Enemey\Enemy.cpp(238,28): warning C4305: '-=': 'double' から 'float' へ切り詰めます。
+C:\Users\2416074\Desktop\run away最新版\run away1\Object\Actor\Enemey\Enemy.cpp(239,29): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
+  run away1.vcxproj -> C:\Users\2416074\Desktop\run away最新版\x64\Debug\run away1.exe

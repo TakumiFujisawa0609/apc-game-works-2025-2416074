@@ -45,7 +45,7 @@ void TitleScene::Update(void)
 		if (ins.IsTrgDown(KEY_INPUT_SPACE))
 		{
 			//SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::LOAD);
-			SoundManager::GetInstance().Play(SoundManager::SRC::GOGAME, Sound::TIMES::ONCE);
+			SoundManager::GetInstance().Play(SoundManager::SRC::START, Sound::TIMES::ONCE);
 			waitSound_ = true;
 		}
 	}
@@ -58,13 +58,13 @@ void TitleScene::Update(void)
 		if (ins.IsPadBtnNew(InputManager::JOYPAD_NO::PAD1, InputManager::JOYPAD_BTN::RIGHT))
 		{
 			//SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::LOAD);
-			SoundManager::GetInstance().Play(SoundManager::SRC::GOGAME, Sound::TIMES::ONCE);
+			SoundManager::GetInstance().Play(SoundManager::SRC::START, Sound::TIMES::ONCE);
 			waitSound_ = true;
 		}
 	}
 
 	//GOGAMEの音が終わったらシーン遷移
-	if (waitSound_ && SoundManager::GetInstance().IsEnded(SoundManager::SRC::GOGAME))
+	if (waitSound_ && SoundManager::GetInstance().IsEnded(SoundManager::SRC::START))
 	{
 		waitSound_ = false;
 		SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::LOAD);
@@ -84,14 +84,10 @@ void TitleScene::Draw(void)
 	float swingX = sinf(frameCounter * 0.1f) * 5.0f; // 左右の揺れ
 	float swingY = cosf(frameCounter * 0.08f) * 3.0f; // 上下の揺れ
 
-	// 画像の中心に文字が来るように座標を調整
-	// 画面サイズ1920x1080、デフォルトのフォントサイズ50で「RUN AWAY」の文字幅を仮定して調整
-	// 実際には文字の幅を測って正確に調整してください
-	int textX = 1500 / 2 + (int)swingX; // 1文字あたり約10ピクセル幅と仮定
-	int textY = 200 + (int)swingY; // 画像のRUN AWAYがあった位置を参考に調整
+	int textX = 1500 / 2 + (int)swingX; 
+	int textY = 200 + (int)swingY;
 
 	SetFontSize(120); 
-	//SetFontEdgeType(DX_FONTTYPE_ANTIALIASING_8X8); // アンチエイリアスを適用して滑らかに
 
 	// 文字の色を赤色に
 	int redColor = GetColor(255, 0, 0);

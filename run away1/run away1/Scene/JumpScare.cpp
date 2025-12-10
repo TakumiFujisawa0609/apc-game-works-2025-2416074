@@ -13,7 +13,7 @@ JumpScare::~JumpScare()
 void JumpScare::Load(void)
 {
     image_ = LoadGraph("Data/Image/Scenes/GameOver.ong.png");
-    black_ = LoadGraph("Data/Image/Scenes/Black.png");
+    black_ = LoadGraph("Data/UI/Scenes/Black.png");
     count_ = 0;
     shakeDuration_ = 0;
 	shakeMagnitude_ = 0;

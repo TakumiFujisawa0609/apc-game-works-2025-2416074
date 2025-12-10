@@ -92,10 +92,11 @@ private:
 
 	bool isFoundPlayer_ = true; 
 
-	float moveSpeed_ = 0.28f;    
+	float moveSpeed_ = 0.25f;    
 	float searchRange_ = 30.0f; 
-
-
+	float dictanceToPlayer_ = 0.0f;
+	float dictanceSE = 0.0f;
+	float volume_ = 3.0f;
 
 	//アニメーション制御
 	AnimationController* animationController_;

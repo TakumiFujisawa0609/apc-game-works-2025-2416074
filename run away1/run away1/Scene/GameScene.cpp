@@ -89,7 +89,7 @@ void GameScene::Init(void)
 
 void GameScene::Update(void)
 {
-    //デバッグ用:当たり判定のON/OFF
+   
     auto& ins = InputManager::GetInstance();
 
     if (ins.IsTrgDown(KEY_INPUT_TAB))
@@ -100,12 +100,11 @@ void GameScene::Update(void)
         if (isPaused_)
         {
             menuSelection_ = 0;
-            // BGMなどを一時停止したい場合はここで処理
             // SoundManager::GetInstance().PauseBGM();
         }
         else
         {
-            // BGMなどを再開したい場合はここで処理
+           
             // SoundManager::GetInstance().ResumeBGM();
         }
     }
@@ -243,7 +242,6 @@ void GameScene::Update(void)
                 OkCollision_ = false; // 当たり判定を無効にする
                 stuckTimer_ = 0;
 
-              
                 // これで、当たり判定OFF期間にすぐに再検知されるのを防ぐ
                 isEnemyStuck_ = false;
             }
@@ -845,12 +843,11 @@ void GameScene::DrawMenu()
     DrawString(screenW / 2 - 80, base_y, "PAUSE MENU", color);
 
     // --- メニュー選択肢 ---
-    base_y += margin_y * 4;
+    base_y += margin_y * 3;
 
     const char* options[] = {
         "ゲームに戻る",
         "タイトル戻る",
-        "ゲーム終了"
     };
 
     for (int i = 0; i < 2; i++)

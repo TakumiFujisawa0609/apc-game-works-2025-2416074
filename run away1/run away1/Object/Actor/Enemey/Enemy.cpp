@@ -38,26 +38,39 @@ void Enemy::LoadEnd()
 
 void Enemy::Update()
 {
+	dictanceSE = volume_ - (dictanceToPlayer_ / 10.0f);
+	if (dictanceSE < 0.5f)
+	{
+		dictanceSE = 0.5f;
+	}
 	animationController_->Update();
 
 	Search();
 
 	auto& sm = SoundManager::GetInstance(); // SoundManagerのインスタンスを取得
 
+	
+
 	if (isFoundPlayer_)
-	{
+	{  
+		Move();
+		sm.ChengeVolume(SoundManager::SRC::ENEMY, dictanceSE);
 		sm.Play(SoundManager::SRC::ENEMY, Sound::TIMES::LOOP);
 		sm.Play(SoundManager::SRC::RUN_BGM, Sound::TIMES::LOOP);
-		Move();
+		
+
 		animationController_->Play(static_cast<int>(ANIM_TYPE::RUN), true);
 	}
 	else
 	{
 		sm.Stop(SoundManager::SRC::ENEMY);
 		sm.Stop(SoundManager::SRC::RUN_BGM);
+
+		
 		SlowFollowPlayer(); // SlowFollowPlayerの処理
 		animationController_->Play(static_cast<int>(ANIM_TYPE::WALK), true);
 	}
+	
 
 	MV1SetPosition(modelId_, pos_);
 	MV1SetRotationXYZ(modelId_, rot_);
@@ -67,6 +80,8 @@ void Enemy::Update()
 void Enemy::Draw()
 {
 	ActorBase::Draw();
+
+	//DrawFormatString(0, 60, 0xFFFFFF, "distance:(%.2f)",dictanceSE);
 
 	if (isFoundPlayer_)
 	{
@@ -241,9 +256,9 @@ void Enemy::Search()
 	VECTOR playerPos = player->GetPos();
 	VECTOR toPlayer = VSub(playerPos, pos_);
 
-	float distance = VSize(toPlayer);
+	dictanceToPlayer_ = VSize(toPlayer);
 
-	if (distance <= searchRange_)
+	if (dictanceToPlayer_ <= searchRange_)
 	{
 		// 発見
 		isFoundPlayer_ = true;

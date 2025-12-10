@@ -1,7 +1,7 @@
 #include "Caution.h"
 #include"../Manager/SceneManager.h"
 #include"../Manager/InputManager.h"
-
+#include"../Manager/SoundManager.h"
 Caution::Caution()
 {
 }
@@ -13,7 +13,7 @@ Caution::~Caution()
 void Caution::Load(void)
 {
 	image_ = LoadGraph("Data/Image/UI/Caution.png");
-	counter_ = 0.0f;
+	sound_ = true;
 }
 
 void Caution::Init(void)
@@ -22,8 +22,12 @@ void Caution::Init(void)
 
 void Caution::Update(void)
 {
-	counter_++;
-	if (counter_ >= 180.0f)
+	if (sound_)
+	{
+		SoundManager::GetInstance().Play(SoundManager::SRC::DONE, Sound::TIMES::ONCE);
+		sound_ = false;
+	}
+	if (SoundManager::GetInstance().IsEnded(SoundManager::SRC::DONE))
 	{
 		SceneManager::GetInstance().ChangeScene(SceneManager::SCENE_ID::TITLE);
 	}

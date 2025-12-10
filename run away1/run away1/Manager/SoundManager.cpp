@@ -36,7 +36,7 @@ void SoundManager::Init(void)
 	soundMap_.emplace(SRC::DASH, res);
 
 	res = Sound(Sound::TYPE::SOUND_2D, "Data/BGM/EnemyBoice.mp3");
-	res.ChengeMaxVolume(0.2);
+	res.ChengeMaxVolume(2.0);
 	soundMap_.emplace(SRC::ENEMY, res);
 
 	res = Sound(Sound::TYPE::SOUND_2D, "Data/BGM/run away.mp3");
@@ -60,7 +60,7 @@ void SoundManager::Init(void)
 	soundMap_.emplace(SRC::HERATBEAT, res);
 
 	res = Sound(Sound::TYPE::SOUND_2D, "Data/BGM/monster.mp3");
-	res.ChengeMaxVolume(0.8);
+	res.ChengeMaxVolume(2.0);
 	soundMap_.emplace(SRC::GAMEOVER, res);
 
 	res = Sound(Sound::TYPE::SOUND_2D, "Data/BGM/RunBGM.mp3");
@@ -86,6 +86,18 @@ void SoundManager::Init(void)
 	res = Sound(Sound::TYPE::SOUND_2D, "Data/BGM/BLACE_LIMIT.mp3");
 	res.ChengeMaxVolume(0.8);
 	soundMap_.emplace(SRC::BLACEOUT, res);
+
+	res = Sound(Sound::TYPE::SOUND_2D, "Data/BGM/CLEARD.mp3");
+	res.ChengeMaxVolume(0.8);
+	soundMap_.emplace(SRC::CLEARD, res);
+
+	res = Sound(Sound::TYPE::SOUND_2D, "Data/BGM/DONE.mp3");
+	res.ChengeMaxVolume(0.8);
+	soundMap_.emplace(SRC::DONE, res);
+
+	res = Sound(Sound::TYPE::SOUND_2D, "Data/BGM/Start.mp3");
+	res.ChengeMaxVolume(1.2);
+	soundMap_.emplace(SRC::START, res);
 }
 
 void SoundManager::Release(void)

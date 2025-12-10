@@ -13,6 +13,6 @@ public:
     void Release(void) override;
 private:
     int image_;
-    float counter_;
+    bool sound_;
 };
 
