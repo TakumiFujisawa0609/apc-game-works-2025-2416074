@@ -370,7 +370,8 @@ void GameScene::Draw(void)
         // 画面中央付近に表示する例
         DrawString(0, 150, "カギを四つ集め脱出しろ...", GetColor(255, 255, 0));
     }
-    //DrawFormatString(0, 0, 0xFFFFFF, "countDown_=%d", countDown_);
+
+    DrawFormatString(0, 0, 0xFFFFFF, "IsGetItem=%d", item_->GetIsGet());
     //DrawFormatString(0, 0, 0xFFFFFF, "GameOver=%d", GetEnemy()->GetGameOver());
 
   
@@ -430,6 +431,11 @@ Enemy* GameScene::GetEnemy()
         }
     }
     return nullptr;
+}
+
+Item* GameScene::GetItem()
+{
+    return item_;
 }
 
 bool GameScene::CheckGameClear()
@@ -615,6 +621,7 @@ void GameScene::ItemCollision(ActorBase* actor)
         // ヒットした場合
         player->OnGetItem();
         item_->SetGotten(true);
+        item_->SetIsGet(true);
     }
 
     // 結果の後始末
@@ -650,6 +657,7 @@ void GameScene::ItemCollision2(ActorBase* actor)
         // ヒットした場合
         player->OnGetItem();
         item_->SetGotten2(true);
+        item_->SetIsGet(true);
     }
 
     // 結果の後始末
@@ -685,6 +693,7 @@ void GameScene::ItemCollision3(ActorBase* actor)
         // ヒットした場合
         player->OnGetItem();
         item_->SetGotten3(true);
+        item_->SetIsGet(true);
     }
 
     // 結果の後始末
@@ -720,6 +729,7 @@ void GameScene::ItemCollision4(ActorBase* actor)
         // ヒットした場合
         player->OnGetItem();
         item_->SetGotten4(true);
+        item_->SetIsGet(true);
     }
 
     // 結果の後始末

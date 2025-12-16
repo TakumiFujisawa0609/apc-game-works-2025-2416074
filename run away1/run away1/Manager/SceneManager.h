@@ -69,6 +69,9 @@ public:
 
 	void SetGameOverState(bool over);
 
+	bool GetNowGame();
+	
+
 private:
 
 	// 静的インスタンス
@@ -97,6 +100,9 @@ private:
 
 	//死んだ判定
 	bool over_;
+
+	//ゲーム判定用
+	bool gameNow_;
 
 	// デルタタイム
 	std::chrono::system_clock::time_point preTime_;

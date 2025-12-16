@@ -258,3 +258,13 @@ bool Item::AllGet()
 	
 	return allGet_;
 }
+
+bool Item::GetIsGet() const
+{
+	return isGet;
+}
+
+void Item::SetIsGet(bool get_)
+{
+	isGet = get_;
+}

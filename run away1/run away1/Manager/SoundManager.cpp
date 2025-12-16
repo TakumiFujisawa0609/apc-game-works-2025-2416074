@@ -98,6 +98,10 @@ void SoundManager::Init(void)
 	res = Sound(Sound::TYPE::SOUND_2D, "Data/BGM/Start.mp3");
 	res.ChengeMaxVolume(1.2);
 	soundMap_.emplace(SRC::START, res);
+
+	res = Sound(Sound::TYPE::SOUND_2D, "Data/BGM/ClearScene.mp3");
+	res.ChengeMaxVolume(1.2);
+	soundMap_.emplace(SRC::CLEARSCENE, res);
 }
 
 void SoundManager::Release(void)

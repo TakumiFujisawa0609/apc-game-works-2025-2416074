@@ -1,8 +1,8 @@
 ﻿  Enemy.cpp
-C:\Users\2416074\Desktop\run away最新版\run away1\Object\Actor\Enemey\Enemy.cpp(192,16): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
-C:\Users\2416074\Desktop\run away最新版\run away1\Object\Actor\Enemey\Enemy.cpp(195,28): warning C4305: '-=': 'double' から 'float' へ切り詰めます。
-C:\Users\2416074\Desktop\run away最新版\run away1\Object\Actor\Enemey\Enemy.cpp(196,29): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
-C:\Users\2416074\Desktop\run away最新版\run away1\Object\Actor\Enemey\Enemy.cpp(234,16): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
-C:\Users\2416074\Desktop\run away最新版\run away1\Object\Actor\Enemey\Enemy.cpp(238,28): warning C4305: '-=': 'double' から 'float' へ切り詰めます。
-C:\Users\2416074\Desktop\run away最新版\run away1\Object\Actor\Enemey\Enemy.cpp(239,29): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
+C:\Users\2416074\Desktop\run away最新版\run away1\Object\Actor\Enemey\Enemy.cpp(213,16): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
+C:\Users\2416074\Desktop\run away最新版\run away1\Object\Actor\Enemey\Enemy.cpp(216,28): warning C4305: '-=': 'double' から 'float' へ切り詰めます。
+C:\Users\2416074\Desktop\run away最新版\run away1\Object\Actor\Enemey\Enemy.cpp(217,29): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
+C:\Users\2416074\Desktop\run away最新版\run away1\Object\Actor\Enemey\Enemy.cpp(255,16): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
+C:\Users\2416074\Desktop\run away最新版\run away1\Object\Actor\Enemey\Enemy.cpp(259,28): warning C4305: '-=': 'double' から 'float' へ切り詰めます。
+C:\Users\2416074\Desktop\run away最新版\run away1\Object\Actor\Enemey\Enemy.cpp(260,29): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
   run away1.vcxproj -> C:\Users\2416074\Desktop\run away最新版\x64\Debug\run away1.exe

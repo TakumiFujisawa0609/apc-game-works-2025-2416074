@@ -1,6 +1,7 @@
 #include "Enemy.h"
 #include"../../../Utility/AsoUtility.h"
 #include"../../Actor/Player/Player.h"
+#include"../../Actor/Item/item.h"
 #include"../../../Object/AnimationController.h"
 #include"../../../Scene/GameScene.h"
 #include"../../../Scene/GameClearScene.h"
@@ -18,11 +19,12 @@ void Enemy::Init()
 {
 	// Transform初期化
 	InitTransform();
+
 	// アニメーションの初期化
 	InitAnimation();
+
 	// 初期化後の個別処理
-	InitPost();
-	
+	InitPost();	
 }
 
 void Enemy::Load()
@@ -38,7 +40,15 @@ void Enemy::LoadEnd()
 
 void Enemy::Update()
 {
+	Item* item = gameScene_->GetItem();
+
+	bool hasItem = item->GetIsGet();
+	if (hasItem)
+	{
+		activeFlag_ = true;
+	}
 	dictanceSE = volume_ - (dictanceToPlayer_ / 10.0f);
+
 	if (dictanceSE < 0.5f)
 	{
 		dictanceSE = 0.5f;
@@ -50,28 +60,34 @@ void Enemy::Update()
 	auto& sm = SoundManager::GetInstance(); // SoundManagerのインスタンスを取得
 
 	
-
-	if (isFoundPlayer_)
-	{  
-		Move();
-		sm.ChengeVolume(SoundManager::SRC::ENEMY, dictanceSE);
-		sm.Play(SoundManager::SRC::ENEMY, Sound::TIMES::LOOP);
-		sm.Play(SoundManager::SRC::RUN_BGM, Sound::TIMES::LOOP);
-		
-
-		animationController_->Play(static_cast<int>(ANIM_TYPE::RUN), true);
-	}
-	else
+	if (activeFlag_)
 	{
-		sm.Stop(SoundManager::SRC::ENEMY);
-		sm.Stop(SoundManager::SRC::RUN_BGM);
 
-		
-		SlowFollowPlayer(); // SlowFollowPlayerの処理
-		animationController_->Play(static_cast<int>(ANIM_TYPE::WALK), true);
+		if (isFoundPlayer_)
+		{
+
+			Move();
+
+			sm.ChengeVolume(SoundManager::SRC::ENEMY, dictanceSE);
+			sm.Play(SoundManager::SRC::ENEMY, Sound::TIMES::LOOP);
+			sm.Play(SoundManager::SRC::RUN_BGM, Sound::TIMES::LOOP);
+
+
+			animationController_->Play(static_cast<int>(ANIM_TYPE::RUN), true);
+		}
+		else
+		{
+			sm.Stop(SoundManager::SRC::ENEMY);
+			sm.Stop(SoundManager::SRC::RUN_BGM);
+
+			SlowFollowPlayer(); // SlowFollowPlayerの処理
+			animationController_->Play(static_cast<int>(ANIM_TYPE::WALK), true);
+
+		}
 	}
 	
 
+	pos_.y = DEFAULT_POS.y;
 	MV1SetPosition(modelId_, pos_);
 	MV1SetRotationXYZ(modelId_, rot_);
 	MV1SetScale(modelId_, scale_);
@@ -79,20 +95,25 @@ void Enemy::Update()
 
 void Enemy::Draw()
 {
-	ActorBase::Draw();
-
-	//DrawFormatString(0, 60, 0xFFFFFF, "distance:(%.2f)",dictanceSE);
-
-	if (isFoundPlayer_)
+	if (activeFlag_)
 	{
-		DrawString(800, 50, "来てるぞ..!", 0xFFFFFF);
-	}
-	else
-	{
-		DrawString(800, 50, "探っている...", 0xFFFFFF);
-	}
-	MV1DrawModel(modelId_);
 
+		ActorBase::Draw();
+
+		if (isFoundPlayer_)
+		{
+			DrawString(800, 50, "来てるぞ..!", 0xFFFFFF);
+		}
+		else
+		{
+			DrawString(800, 50, "探っている...", 0xFFFFFF);
+		}
+		MV1DrawModel(modelId_);
+	}
+	else 
+	{
+		DrawString(800, 50, "静かだ..", 0xFFFFFF);
+	}
 }
 
 void Enemy::Release()
@@ -128,7 +149,7 @@ void Enemy::InitTransform(void)
 	rot_ = VGet(0.0f, AsoUtility::Deg2RadF(-90.0), 0.0f);
 	scale_ = DEFAULT_SCALE;
 	
-	activeFlag_ = true;
+	activeFlag_ = false;
 
 	// 当たり判定用カプセルの始点・終点・半径の初期化
 	startCapsulePos_ = CAPSULE_START_POS;
@@ -165,7 +186,7 @@ void Enemy::InitPost(void)
 
 void Enemy::Move()
 {
-	FollowPlayer();
+		FollowPlayer();
 }
 
 void Enemy::FollowPlayer()
@@ -194,9 +215,9 @@ void Enemy::FollowPlayer()
 	float diff = targetRotY - rot_.y;
 	if (diff > DX_PI) diff -= DX_TWO_PI;
 	if (diff < -DX_PI) diff += DX_TWO_PI;
-	rot_.y += diff * 0.1f; // ← 徐々に向きを合わせる
+	rot_.y += diff * 0.1f; 
 
-	// ★ゆっくり移動（1フレームごとに少しずつ）
+	//移動
 	pos_.x += toPlayer.x * moveSpeed_;
 	pos_.z += toPlayer.z * moveSpeed_;
 }

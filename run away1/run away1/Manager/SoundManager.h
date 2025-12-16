@@ -26,7 +26,8 @@ public:
 		BLACEOUT,
 		CLEARD,
 		DONE,
-		START
+		START,
+		CLEARSCENE
 	};
 
 	// 明示的にインステンスを生成する

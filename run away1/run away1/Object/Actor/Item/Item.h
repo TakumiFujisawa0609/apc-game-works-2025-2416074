@@ -66,6 +66,11 @@ public:
 
 	bool AllGet();
 
+	bool GetIsGet() const;
+
+	void SetIsGet(bool get_);
+	
+
 private:
 	int modelId_;
 	int modelId2_;
@@ -103,5 +108,7 @@ private:
 	int lightHandle2_; // 鍵2用のライトハンドル
 	int lightHandle3_; // 鍵3用のライトハンドル
 	int lightHandle4_; // 鍵4用のライトハンドル
+
+	bool isGet = false;
 };
 

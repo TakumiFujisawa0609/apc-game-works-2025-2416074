@@ -33,6 +33,8 @@ public:
 
     Enemy* GetEnemy();
 
+    Item* GetItem();
+
     //ƒQ[ƒ€ƒNƒŠƒA”»’è
     bool CheckGameClear();
 

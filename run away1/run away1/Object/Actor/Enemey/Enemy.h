@@ -5,6 +5,7 @@
 class GameClearScene;
 class GameScene;
 class Player;
+class Item;
 class Enemy : public ActorBase
 {
 public:
@@ -16,6 +17,9 @@ public:
 		WALK,
 		MAX
 	};
+
+
+
 	//定数定義
 	//デフォルト座標
 	static constexpr VECTOR DEFAULT_POS = { -125.18f,40.0f,-20.60f };
@@ -109,4 +113,3 @@ private:
 	bool isBGMSoundPlayed_;   // SRC::BGM の再生開始フラグ
 
 };
-

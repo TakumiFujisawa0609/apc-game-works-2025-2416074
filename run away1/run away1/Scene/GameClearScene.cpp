@@ -92,6 +92,8 @@ void GameClearScene::Update(void)
 {
 	auto& ins = InputManager::GetInstance();
 
+	SoundManager::GetInstance().Play(SoundManager::SRC::CLEARSCENE,Sound::TIMES::LOOP) ;
+
 	// 全てのアクターを回す
 	for (auto actor : allActor_)
 	{

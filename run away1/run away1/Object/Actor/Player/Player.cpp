@@ -40,6 +40,7 @@ void Player::Update()
 {
     Move();
 
+	auto& scn = SceneManager::GetInstance();
     auto& ins = InputManager::GetInstance();
     if (pos_.z < -57.0f)
     {
@@ -59,7 +60,11 @@ void Player::Update()
 			countDown_ = 0;
         }
     }
-  
+
+    if (scn.GetNowGame())
+    {
+        pos_.y = INITPOS.y;
+    }
     // モデル更新
     MV1SetPosition(modelId_, pos_);
     MV1SetRotationXYZ(modelId_, rot_);

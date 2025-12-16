@@ -54,6 +54,8 @@ void SceneManager::Init(void)
 	// 3D—p‚Ìİ’è
 	Init3D();
 
+	gameNow_ = false;
+
 	// ‰ŠúƒV[ƒ“‚Ìİ’è
 	ChangeScene(SCENE_ID::CAUTION);
 
@@ -188,9 +190,11 @@ void SceneManager::ChangeScene(SCENE_ID sceneId)
 		break;
 	case SCENE_ID::GAME:
 		scene_ = new GameScene();
+		gameNow_ = true;
 		break;
 	case SCENE_ID::CLEAR:
 		scene_ = new GameClearScene();
+		gameNow_ = false;
 		break;
 	case SCENE_ID::OVER:
 		scene_ = new GameOverScene();
@@ -249,6 +253,10 @@ void SceneManager::SetGameOverState(bool over)
 	over_ = over;
 }
 
+bool SceneManager::GetNowGame()
+{
+	return gameNow_;
+}
 SceneManager::SceneManager(void)
 {
 
